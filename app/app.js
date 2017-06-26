@@ -98,16 +98,16 @@ angular.module('APIM', [
 .factory('ServicesHost', ["$filter",
 	function($filter) {
     var usershost = function() {
-		return "http://dockhero-round-98177.dockhero.io:8101/";
+		return "https://dockhero-round-98177.dockhero.io:8101/";
     };
     var microserviceshost = function() {
-		return "http://localhost:8121/";
+		return "https://localhost:8121/";
     };
 	var transactionshost = function() {
-		return "http://dockhero-round-98177.dockhero.io:8131/";
+		return "https://dockhero-round-98177.dockhero.io:8131/";
     };
 	var slahost = function() {
-		return "http://dockhero-round-98177.dockhero.io:8141/";
+		return "https://dockhero-round-98177.dockhero.io:8141/";
     };
 	var filehandlerhost = function() {
 		return "http://localhost:8004/";
