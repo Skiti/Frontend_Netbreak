@@ -1,0 +1,114 @@
+<div class="row">
+
+	<div class="col-xs-10 col-sm-10 col-md-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-0">
+	
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Gestione profilo</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/account">Dati personali</a></li>
+				<li class="list-group-item"><a href="#!/cambio_password">Cambio password</a></li>
+				<li class="list-group-item"><a href="#!/api_acquistate">API acquistate</a></li>
+				<li class="list-group-item" ng-if="ClientType == 'Basic'">API registrate</li>
+				<li class="list-group-item" ng-if="ClientType == 'Developer'"><a href="#!/api_registrate">API registrate</a></li>
+			</ul>
+		</div>
+		
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Crediti</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-info"><b>Possiedi {{Credits}} crediti.</b></li>
+				<li class="list-group-item"><a href="#!/ricarica_crediti">Ricarica crediti</a></li>
+			</ul>
+		</div>
+		
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Transazioni</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/registro_transazioni">Registro transazioni</a></li>
+			</ul>
+		</div>
+		
+		<div class="panel panel-primary" ng-if="ClientType == 'Basic'">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Altro</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/diventa_sviluppatore"><b>Diventa Sviluppatore!</b></a></li>
+			</ul>
+		</div>
+		
+	</div>
+	
+    <div class="col-xs-10 col-sm-10 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+
+       <div class="row">
+          
+          <!-- UC12.2 e UC12.2.2 -->
+          <div class="col-md-11" >
+
+          <div class="page-header">
+            <h1>API Acquistate</h1>
+          </div>
+
+            <div class="panel panel-default mainPanelAccount">
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th colspan=2>Lista API</th>
+                    <th>Attiva?</th>
+					<th>Scadenza tra</th>
+					<th>Dettagli SLA</th>
+					<th>Azioni disponibili:</th>
+                  </tr>
+                </thead>
+                <tbody>
+					<tr ng-repeat="service in servicesid">
+					
+						<td class="text-center">
+							<a href="#!/api/{{service.IdMS}}">
+								<img ng-src="{{serviceslogo[service.IdMS]}}" alt="logo api" class="imagesmall">
+							</a>
+						</td>
+					
+						<td>
+							<a href="#!/api/{{service.IdMS}}">{{servicesname[service.IdMS]}}</a>
+						</td>
+						
+						<td ng-if="servicesisactive[service.IdMS]">
+							<img src="http://localhost:8000/resources/icons/checked.png" alt="attiva">
+						</td>
+						
+						<td ng-if="!servicesisactive[service.IdMS]">
+							<img src="http://localhost:8000/resources/icons/unchecked.png" alt="inattiva">
+						</td>
+						
+						<td>{{service.Remaining}} {{getRemainingSuffix(servicesidpolicy[service.IdMS])}}</td>
+						
+						<td class="text-center">
+							<a href="#!/visualizza_sla_api/{{service.IdMS}}">
+								<img ng-src="http://localhost:8000/resources/icons/visualizza_sla_api.png" alt="immagine sla" class="imagesmall">
+							</a>
+						</td>
+						
+						<td><button id="newapikey{{service.IdMS}}" type="button" ng-click="getNewAPIKey(service.APIKey,service.IdMS)" class="btn btn-warning">Nuova chiave API</button></td>
+						
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+            
+          </div>
+
+        </div>
+    </div>
+</div>
+

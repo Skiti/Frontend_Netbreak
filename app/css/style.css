@@ -1,0 +1,58 @@
+.netbreaklogo {
+	max-height: 26px;
+	float:left;
+}
+
+.categories {
+	background-color: lightblue;
+}
+
+.smallmargintop {
+	margin-top: 30px;
+}
+
+.smallpadding {
+	padding: 15px;
+}
+
+.smallermargintop {
+	margin-top: 18px;
+}
+
+.mainPanelAccount {
+	padding: 0.5%;
+}
+
+.datiPersonaliForm {
+	padding: 1%;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+.avatarmarginr {
+	margin-right: 12px;
+}
+
+.imagesmall {
+	max-height: 20px;
+}
+
+.logomedium {
+	max-height: 200px;
+}
+
+.nounderline:link {
+	text-decoration: none;
+}
+
+.copyButton {
+	float:right;
+	max-height: 22px;
+	font-size:12px;
+}
+
+.roundimg {
+	border-radius: 25px;
+}

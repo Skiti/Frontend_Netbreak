@@ -1,0 +1,72 @@
+<div class="row">
+
+	<div class="col-xs-10 col-sm-10 col-md-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-0">
+	
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Amministrazione</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/gestione_utenti">Gestione utenti</a></li>
+				<li class="list-group-item"><a href="#!/gestione_api">Gestione API</a></li>
+			</ul>
+		</div>
+		
+	</div>
+
+    <div class="col-xs-10 col-sm-10 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+
+        <div class="row">
+			<!-- UC12.1.1 e UC12.1.2-->
+			<div class="col-md-11">
+				<h1>Gestione utenti</h1>
+				<div class="panel panel-default mainPanelAccount">
+					<table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Utente</th>
+					<th>Tipologia</th>
+                    <th>API registrate</th>
+                    <th>API attive</th>
+					<th>Azioni disponibili:</th>
+                  </tr>
+                </thead>
+                <tbody>
+					<tr ng-repeat="user in users">
+					
+						<td>
+							{{user.IdClient}}
+						</td>
+					
+						<td>
+							<a href="#!/visualizza_utente/{{user.IdClient}}">
+								{{user.Name}} {{user.Surname}}
+							</a>
+						</td>
+						
+						<td>
+							<span ng-if="user.ClientType == 1">Base</span>
+							<span ng-if="user.ClientType == 2">Sviluppatore</span>
+						</td>
+
+						<td>
+							{{user.Ms_Number}}
+						</td>
+
+						<td>
+							{{user.Active_Ms_Number}}
+						</td>
+
+						<td><button type="button" ng-click="showConfirm($event, user.IdClient, user.Active_Ms_Number)" class="btn btn-danger">Elimina</button></td>
+						
+                  </tr>
+
+                </tbody>
+              </table>
+				</div>
+			</div>
+        </div>
+    </div>
+	
+</div>

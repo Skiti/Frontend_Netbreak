@@ -1,47 +1,73 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+!.gitkeep
 
-# Folder config file
-Desktop.ini
+# Ignore Visual Studio Project #
+################################
+*.user
+*.gpState
+*.suo
+bin
+obj
+/packages
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Ignore Node, Bower & Sass #
+#############################
+node_modules
+app/bower_components
+build
+dist
+.sass-cache
+.tmp
+tmp
+npm-debug.log
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Ignore Test reporters #
+#########################
+**/test/coverage
+test/tmp
+report
+coverage
+*-test-results
+.coveralls.yml
 
-# Windows shortcuts
-*.lnk
+# MongoDB #
+###########
+#Don't commit Mongo Database files
+*.lock
+*.0
+*.1
+*.ns
+journal
 
-# =========================
-# Operating System Files
-# =========================
+# Ignore NetBeans #
+###################
+nbproject
 
-# OSX
-# =========================
+# Ignore WebStorm #
+###################
+.idea
 
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+# *.sdf
+*.mdf
+*.ldf
+logs/*
+
+# OS generated files #
+######################
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+ehthumbs.db
+Icon?
+Thumbs.db

@@ -1,0 +1,43 @@
+<div class="row" >
+    <div class="col-xs-10 col-sm-8 col-md-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3">
+        <div class="thumbnail">
+			<img src="http://localhost:8000/resources/policies/traffico.jpg" alt="immagine policy" class="logomedium roundimg">
+			<div class="caption">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3>Policy per traffico dati</h3>
+						<p>Si paga in base al traffico dati generato.</p>
+						<p>Con traffico dati si intende la somma delle dimensioni dei parametri di richiesta e di risposta dell'API, che comunque rimarrà limitato inferiormente ad 1 byte.</p>
+						<p>Questa policy è stata pensata per API caratterizzate da un passaggio di dati considerevoli, ad esempio la rielaborazione di immagini in alta risoluzione.</p>
+						<table class="table">
+							<tr>
+								<td>NBRQ:</td>
+								<td>Numero byte dei parametri della richiesta all'API, calcolati secondo il protocollo SODEP</td>
+							</tr>
+							<tr>
+								<td>NBRS:</td>
+								<td>Numero byte dei parametri della risposta dell'API, calcolati secondo il protocollo SODEP</td>
+							</tr>
+							<tr>
+								<td>VA:</td>
+								<td>Valore attuale chiave API</td>
+							</tr>
+							<tr>
+								<td>VF:</td>
+								<td>Valore finale chiave API</td>
+							</tr>
+							<tr>
+								<td>Vincoli:</td>
+								<td>( NBRQ + NBRS ) &gt; 1</td>
+							</tr>
+							<tr>
+								<td>Formula:</td>
+								<td>VF = VA - ( NBRQ + NBRS )</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

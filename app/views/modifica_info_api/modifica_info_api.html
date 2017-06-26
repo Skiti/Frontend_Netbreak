@@ -1,0 +1,141 @@
+<div class="row">
+
+	<div class="col-xs-10 col-sm-10 col-md-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-0">
+	
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Gestione profilo</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/account">Dati personali</a></li>
+				<li class="list-group-item"><a href="#!/api_acquistate">API acquistate</a></li>
+				<li class="list-group-item" ng-if="ClientType == 'Basic'">API registrate</li>
+				<li class="list-group-item" ng-if="ClientType == 'Developer'"><a href="#!/api_registrate">API registrate</a></li>
+			</ul>
+		</div>
+		
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Crediti</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item list-group-item-info"><b>Possiedi {{Credits}} crediti.</b></li>
+				<li class="list-group-item"><a href="#!/ricarica_crediti">Ricarica crediti</a></li>
+			</ul>
+		</div>
+		
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Transazioni</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/registro_transazioni">Registro transazioni</a></li>
+			</ul>
+		</div>
+		
+		<div class="panel panel-primary" ng-if="ClientType == 'Basic'">
+			<!-- Default panel contents -->
+			<div class="panel-heading">Altro</div>
+			<!-- List group -->
+			<ul class="list-group">
+				<li class="list-group-item"><a href="#!/diventa_sviluppatore"><b>Diventa Sviluppatore!</b></a></li>
+			</ul>
+		</div>
+		
+	</div>
+	
+	<div class="col-xs-10 col-sm-10 col-md-7 col-xs-offset-1 col-sm-offset-1 col-md-offset-1">
+
+        <div class="row">
+			
+			<div class="col-md-11">
+				<h1>Modifica API: "{{nomeapi}}"</h1>
+				<h3>Informazioni</h3>
+				<div class="panel panel-default mainPanelAccount">
+				
+					<form class="datiPersonaliForm">
+						<!-- Inserisci Nome API -->
+						<div class="form-group">
+							<label for="nomeapi">Nome API</label>
+							<input type="text" ng-model="nomeapi" class="form-control" id="nomeapi" name="nomeapi" />
+						</div>
+						<!-- Inserisci Descrizione API -->
+						<div class="form-group">
+							<label for="descrizione">Descrizione</label>
+							<textarea ng-model="descrizione" class="form-control" rows="3" id="descrizione"name="descrizione"></textarea>
+						</div>
+						<!-- Inserisci documentazione pdf -->
+						<div class="form-group">
+							<label for="docpdf">Inserisci la documentazione in formato pdf</label>
+							<input accept=".pdf" type="file" onchange="angular.element(this).scope().uploadpdf(this)" id="docpdf" name="docpdf" />
+							<p class="help-block">Descrivi meglio il tuo servizio inserendo una documentazione</p>
+						</div>
+						<!-- Inserisci documentazione esterna -->
+						<div class="form-group">
+							<label for="docexternal">Inserisci link a Documentazione Esterna</label>
+							<input type="text" ng-model="docexternal" class="form-control" id="docexternal" name="docexternal" />
+						</div>
+						<!-- Inserisci Guadagno -->
+						<div class="form-group">
+							<label for="guadagno">Inserisci guadagno API</label>
+							<input type="text" ng-model="guadagno" class="form-control" id="guadagno" name="guadagno" />
+						</div>
+						<!-- Inserisci SLA Guaranteed -->
+						<div class="form-group">
+							<label for="slaguaranteed">Inserisci SLA garantita API</label>
+							<input type="text" ng-model="slaguaranteed" class="form-control" id="slaguaranteed" name="slaguaranteed" />
+						</div>
+						<!-- Inserisci Logo -->
+						<div class="form-group">
+							<img ng-src="{{logo_presentation}}" class="img-responsive" class="img-thumbnail">
+							<label for="logo">Inserisci logo API</label>
+							<input accept="image/*" type="file" onchange="angular.element(this).scope().uploadlogo(this)" id="logo" name="logo" />
+							<p class="help-block">Il logo deve essere in formato png, jpeg oppure gif</p>
+						</div>
+						<!-- Conferma -->
+						<button type="submit" ng-click="submit()" class="btn btn-primary">Conferma modifiche</button>
+					</form>
+				</div>
+				
+				<h3>Categorie</h3>
+				<div class="panel panel-default mainPanelAccount">
+					<form class="datiPersonaliForm">
+						<!-- Scegli Categoria -->
+						<div class="form-group">
+							<label for="categoria">Categorie:</label>
+							<button ng-repeat="category in categories" IdCategory="{{category.IdCategory}}" type="button" class="{{category.Class}}" data-ng-click="addNewCategory($event)">{{category.Name}}</button>  
+						</div>
+						<p class="help-block">Seleziona almeno una categoria altrimenti la tua API non sarà visibile</p>
+						<!-- Conferma -->
+						<button type="submit" ng-click="updateCategories()" class="btn btn-primary">Aggiorna categorie</button>
+					</form>
+				</div>
+				
+				<h3>Disponibilità</h3>
+				<div class="panel panel-default mainPanelAccount datiPersonaliForm">
+					<!-- API attualmente attiva -->
+					<div ng-if="IsActive" ng-cloak>
+						<!-- visuallizza isactive API -->
+						<div class="panel panel-success">
+							<div class="panel-heading"><b>Questa API è attualmente attiva.</b></div>
+						</div>
+						<!-- opzione settaggio non attiva per l'API propria -->
+						<div class="panel"><button class="btn btn-danger" ng-click="changeIsActive()">Disattiva API</button></div>
+					</div>
+					
+					<!-- API attualmente inattiva -->
+					<div ng-if="!IsActive" ng-cloak>
+						<!-- visuallizza isactive API -->
+						<div class="panel panel-danger">
+							<div class="panel-heading"><b>Questa API è attualmente inattiva.</b></div>
+						</div>
+						<!-- opzione settaggio non attiva per l'API propria -->
+						<div class="panel"><button class="btn btn-success" ng-click="changeIsActive()">Riattiva API</button></div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	
+	</div>
